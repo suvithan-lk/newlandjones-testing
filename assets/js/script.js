@@ -148,7 +148,7 @@ function njNavbar(currentPath) {
       <div id="desktopNavLeft" class="nav-group hidden lg:flex"></div>
 
       <a href="${njUrl("index.html")}" class="logo" aria-label="Newland Jones — home">
-        <img class="logo-img" src="${njUrl("public/logo/logo-nj.png")}" alt="Newland Jones Chartered Accountants" width="1200" height="267" />
+        <img class="logo-img" src="${njUrl("public/logo.png")}" alt="Newland Jones Limited, Chartered Accountants" width="1400" height="250" />
       </a>
 
       <div class="nav-right hidden lg:flex">
@@ -196,7 +196,7 @@ function njFooter() {
       <div>
         <div class="footer-top">
           <a href="${njUrl("index.html")}" class="footer-logo" aria-label="Newland Jones — home">
-            <img src="${njUrl("public/logo/logo-nj.png")}" alt="Newland Jones Chartered Accountants" width="1200" height="267" loading="lazy" />
+            <img src="${njUrl("public/logo.png")}" alt="Newland Jones Limited, Chartered Accountants" width="1400" height="250" loading="lazy" />
           </a>
           <a href="${njUrl("pages/free-consultation.html")}" class="primary-pill">Book a Consultation ${njIcon("arrow-right")}</a>
         </div>

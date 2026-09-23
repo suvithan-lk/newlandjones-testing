@@ -274,7 +274,7 @@ a.top-bar-item:hover, .social-link:hover, .portal-link:hover { color: #fff; opac
   }
 }
 
-/* logo (public/logo/logo-nj.png, trimmed copy of the brand logo) */
+/* logo (public/logo.png — transparent, trimmed brand logo, 5.6:1) */
 .logo {
   display: inline-flex;
   align-items: center;

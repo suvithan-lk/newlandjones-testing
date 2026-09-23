@@ -121,7 +121,7 @@ newland-jones/
 
 JS workspaces use **pnpm + Turborepo**. The .NET solution builds independently with `dotnet`.
 
-**Moving the design sample:** move `index.html`, `pages/`, `assets/` and `public/logo/` into `design-sample/` in the first commit. The approved logo files then move to `apps/web/public/brand/`.
+**Moving the design sample:** move `index.html`, `pages/`, `assets/` and `public/` into `design-sample/` in the first commit. The approved logo files then move to `apps/web/public/brand/`.
 
 ## 6. Cross-cutting concerns
 

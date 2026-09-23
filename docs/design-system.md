@@ -87,7 +87,7 @@ This gives utilities like `text-navy`, `bg-tint`, `border-line` and `font-displa
 
 **Signature move:** the emphasised phrase in a heading is written as `<em>` and renders as **blue italic serif**. Use it for one phrase per heading at most.
 
-The logo uses its own geometric sans (in the image). Don't recreate it with web fonts. Use the `Logo` component, which serves `apps/web/public/brand/logo-nj.svg` (SVG requested from the client; until then the trimmed PNG from `design-sample/public/logo/logo-nj.png`). The footer uses a white knockout of the logo (`filter: brightness(0) invert(1)`).
+The logo uses its own geometric sans (in the image). Don't recreate it with web fonts. Use the `Logo` component, which serves `apps/web/public/brand/logo.svg` (SVG requested from the client; until then the transparent PNG `design-sample/public/logo.png`, 1400×250). The footer uses a white knockout of the logo (`filter: brightness(0) invert(1)`). Favicon and touch icon are cut from the "nJ" mark (`public/favicon-32.png`, `public/apple-touch-icon.png`).
 
 ---
 

@@ -76,7 +76,7 @@ Rendered server-side through a `<JsonLd>` component. Only mark up facts that are
   "@id": "https://www.newlandjones.co.uk/#business",
   "name": "Newland Jones",
   "url": "https://www.newlandjones.co.uk/",
-  "logo": "https://www.newlandjones.co.uk/brand/logo-nj.png",
+  "logo": "https://www.newlandjones.co.uk/brand/logo.png",
   "telephone": "<site_settings.phone>",
   "address": { "@type": "PostalAddress", "streetAddress": "<…>", "addressLocality": "Manchester", "postalCode": "<…>", "addressCountry": "GB" },
   "openingHoursSpecification": [{ "@type": "OpeningHoursSpecification",
