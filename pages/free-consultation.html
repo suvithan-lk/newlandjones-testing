@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Book a free consultation with Newland Jones — a relaxed conversation about your business and your numbers." />
+  <title>Free Consultation | Newland Jones</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <script src="../assets/vendor/tailwind.js"></script>
+  <script src="../assets/js/tailwind-config.js"></script>
+
+  <script src="../assets/vendor/lucide.min.js"></script>
+</head>
+
+<body class="font-sans text-navy antialiased">
+  <div id="siteHeader"></div>
+
+  <main>
+    <section class="page-banner" style="--banner-img:url('https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=1400&q=75')">
+      <div class="mx-auto max-w-[1200px] px-6 xl:px-8">
+        <p class="banner-eyebrow">Free Consultation</p>
+        <h1 class="banner-title">A free chat about <em>your business</em></h1>
+        <p class="banner-text">No pitch, no obligation — a conversation about where your business is, where you want it to go, and whether we're the right fit to help.</p>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <div class="mx-auto max-w-[1200px] px-6 xl:px-8">
+        <div class="card-grid">
+          <div class="card">
+            <span class="card-icon"><i data-lucide="message-circle"></i></span>
+            <h3>What happens</h3>
+            <p>We talk about your business, your current setup and what you need. If we can help, we'll outline how; if we can't, we'll say so and point you somewhere useful.</p>
+          </div>
+          <div class="card">
+            <span class="card-icon"><i data-lucide="clock-3"></i></span>
+            <h3>How long</h3>
+            <p>Usually around 30 minutes, by phone or video — whatever suits you. <span class="text-eyebrow">(Duration to confirm before publishing)</span></p>
+          </div>
+          <div class="card">
+            <span class="card-icon"><i data-lucide="clipboard-list"></i></span>
+            <h3>What to prepare</h3>
+            <p>Nothing formal. If you have recent accounts or bookkeeping to hand, great — if not, come as you are.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-section tint">
+      <div class="mx-auto max-w-[1200px] px-6 xl:px-8">
+        <div class="contact-grid">
+          <div>
+            <p class="section-eyebrow">Book Yours</p>
+            <h2 class="section-title">Three good reasons to book</h2>
+            <ul class="check-list mt-6">
+              <li><i data-lucide="check-circle"></i> A clear view of your options — even if you don't engage us</li>
+              <li><i data-lucide="check-circle"></i> A fixed-fee quote with no hidden extras</li>
+              <li><i data-lucide="check-circle"></i> Zero obligation to take it further</li>
+            </ul>
+            <p class="section-lead mt-6">Prefer to talk first? Call <a href="tel:+441610000000" class="text-brand font-semibold">0161 000 0000</a>.</p>
+          </div>
+
+          <form id="enquiryForm" class="contact-form" novalidate>
+            <h3 class="text-xl font-extrabold mb-1">Book my consultation</h3>
+            <p class="text-muted text-sm mb-5">Fields marked <span class="text-brand">*</span> are required.</p>
+
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="name">Name <span class="req">*</span></label>
+                <input id="name" name="name" type="text" autocomplete="name" required />
+                <span id="nameError" class="field-error" role="alert"></span>
+              </div>
+
+              <div class="form-field">
+                <label for="email">Email <span class="req">*</span></label>
+                <input id="email" name="email" type="email" autocomplete="email" required />
+                <span id="emailError" class="field-error" role="alert"></span>
+              </div>
+
+              <div class="form-field">
+                <label for="phone">Phone</label>
+                <input id="phone" name="phone" type="tel" autocomplete="tel" />
+              </div>
+
+              <div class="form-field">
+                <label for="stage">Business Stage <span class="req">*</span></label>
+                <select id="stage" name="stage" required>
+                  <option value="">Please select…</option>
+                  <option value="sole-trader">Sole Trader</option>
+                  <option value="limited">Limited Company</option>
+                  <option value="established">Established SME</option>
+                  <option value="other">Other</option>
+                </select>
+                <span id="stageError" class="field-error" role="alert"></span>
+              </div>
+
+              <div class="form-field full">
+                <label for="message">What would you like to cover? <span class="req">*</span></label>
+                <textarea id="message" name="message" required></textarea>
+                <span id="messageError" class="field-error" role="alert"></span>
+              </div>
+            </div>
+
+            <div id="formStatus" class="form-status" role="status" aria-live="polite"></div>
+
+            <div class="mt-5 flex flex-wrap items-center gap-4">
+              <button type="submit" class="primary-pill">
+                Book My Free Consultation
+                <i data-lucide="calendar-check"></i>
+              </button>
+              <p class="form-note">We'll only use your details to arrange this. See our <a href="privacy-policy.html" class="text-brand font-semibold">privacy policy</a>.</p>
+            </div>
+
+            <div id="formSuccess" class="form-success" role="status">
+              Thank you for contacting Newland Jones. We've received your enquiry and will be in touch shortly.
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <div class="mx-auto max-w-[1200px] px-6 xl:px-8">
+        <p class="section-eyebrow">FAQs</p>
+        <h2 class="section-title">Before you book</h2>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              Is it really free?
+              <i data-lucide="chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              Yes — genuinely free, with no obligation. If we're not the right fit, we'll tell you and suggest someone who is.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              What if I'm just starting out?
+              <i data-lucide="chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              Perfect timing. Early decisions — structure, registration, bookkeeping habits — are the cheapest to get right.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              Will I get a quote?
+              <i data-lucide="chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              If we both want to proceed, you'll get a written fixed monthly fee that covers exactly what we discussed. No surprises later.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="siteFooter"></div>
+
+  <script src="../assets/js/script.js"></script>
+</body>
+</html>
