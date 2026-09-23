@@ -156,9 +156,12 @@ function njNavbar(currentPath) {
         <a href="${njUrl("pages/free-consultation.html")}" class="primary-pill nav-cta">Enquire</a>
       </div>
 
-      <button id="mobileMenuButton" class="hamburger-btn lg:hidden" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileDrawer">
-        ${njIcon("menu")}
-      </button>
+      <div class="mobile-actions lg:hidden">
+        <a class="call-btn" href="tel:+441610000000" aria-label="Call Newland Jones on 0161 000 0000">${njIcon("phone")}</a>
+        <button id="mobileMenuButton" class="hamburger-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileDrawer">
+          ${njIcon("menu")}
+        </button>
+      </div>
 
       <div id="desktopDropdowns"></div>
     </nav>
@@ -169,7 +172,7 @@ function njHeader(currentPath) {
   return `
     ${njNavbar(currentPath)}
 
-    <div id="mobileDrawer" class="mobile-drawer" aria-hidden="true">
+    <div id="mobileDrawer" class="mobile-drawer" role="dialog" aria-modal="true" aria-label="Site menu" aria-hidden="true">
       <div class="mobile-drawer-inner">
         <div class="flex items-center justify-between">
           <span class="drawer-title">Menu</span>
@@ -180,7 +183,7 @@ function njHeader(currentPath) {
         <div id="mobileLinks" class="mobile-links"></div>
         <div class="mobile-drawer-actions">
           <a href="${njUrl("pages/free-consultation.html")}" class="primary-pill mobile-drawer-cta">Book a Consultation ${njIcon("arrow-right")}</a>
-          <a href="${njUrl("pages/contact-us.html")}" class="outline-pill mobile-drawer-portal">Contact Us ${njIcon("arrow-right")}</a>
+          <a href="tel:+441610000000" class="outline-pill mobile-drawer-portal">${njIcon("phone")} Call 0161 000 0000</a>
         </div>
       </div>
     </div>`;
@@ -497,7 +500,7 @@ function initMenus(doc) {
         window.clearTimeout(m.hoverTimer);
         m.hoverTimer = null;
       });
-      closeMobileDrawer();
+      if (window.njCloseMobileDrawer) window.njCloseMobileDrawer();
     }
   });
 
@@ -510,16 +513,6 @@ function initMenus(doc) {
       closePanel(openMenu);
     }
   });
-
-  function closeMobileDrawer() {
-    const drawer = doc.getElementById("mobileDrawer");
-    const button = doc.getElementById("mobileMenuButton");
-    if (!drawer) return;
-    drawer.classList.remove("open");
-    drawer.setAttribute("aria-hidden", "true");
-    if (button) button.setAttribute("aria-expanded", "false");
-    doc.body.style.overflow = "";
-  }
 
   /* -------- active nav item -------- */
   const here = window.location.pathname.split("/").pop() || "index.html";
@@ -567,37 +560,70 @@ function initMobileDrawer(doc) {
   const links = doc.getElementById("mobileLinks");
   if (!drawer || !openBtn || !links) return;
 
+  const desktop = window.matchMedia("(min-width: 1024px)");
+  const isOpen = () => drawer.classList.contains("open");
+
+  function focusables() {
+    return Array.from(drawer.querySelectorAll("a[href], button:not([disabled])"))
+      .filter((el) => el.offsetParent !== null);
+  }
+
   function openDrawer() {
     drawer.classList.add("open");
     drawer.setAttribute("aria-hidden", "false");
     openBtn.setAttribute("aria-expanded", "true");
-    doc.body.style.overflow = "hidden";
+    // lock both roots: iOS Safari ignores overflow on <body> alone
+    doc.documentElement.classList.add("nav-locked");
     if (closeBtn) closeBtn.focus();
   }
-  function closeDrawer() {
+
+  function closeDrawer({ restoreFocus = true } = {}) {
+    if (!isOpen()) return;
     drawer.classList.remove("open");
     drawer.setAttribute("aria-hidden", "true");
     openBtn.setAttribute("aria-expanded", "false");
-    doc.body.style.overflow = "";
+    doc.documentElement.classList.remove("nav-locked");
+    if (restoreFocus) openBtn.focus();
   }
   window.njCloseMobileDrawer = closeDrawer;
 
   openBtn.addEventListener("click", openDrawer);
-  if (closeBtn) closeBtn.addEventListener("click", closeDrawer);
+  if (closeBtn) closeBtn.addEventListener("click", () => closeDrawer());
   drawer.addEventListener("click", (event) => {
     if (event.target === drawer) closeDrawer();
+  });
+
+  // keep keyboard focus inside the open dialog
+  drawer.addEventListener("keydown", (event) => {
+    if (event.key !== "Tab") return;
+    const items = focusables();
+    if (!items.length) return;
+    const first = items[0];
+    const last = items[items.length - 1];
+    if (event.shiftKey && doc.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && doc.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
+
+  // rotating a tablet / resizing to desktop must not leave the page scroll-locked
+  desktop.addEventListener("change", (event) => {
+    if (event.matches) closeDrawer({ restoreFocus: false });
   });
 
   links.addEventListener("click", (event) => {
     const accordion = event.target.closest(".mobile-accordion");
     if (accordion) {
       const panel = doc.getElementById(accordion.getAttribute("aria-controls"));
-      const isOpen = accordion.getAttribute("aria-expanded") === "true";
-      accordion.setAttribute("aria-expanded", String(!isOpen));
-      panel.classList.toggle("open", !isOpen);
+      const expanded = accordion.getAttribute("aria-expanded") === "true";
+      accordion.setAttribute("aria-expanded", String(!expanded));
+      panel.classList.toggle("open", !expanded);
       return;
     }
-    if (event.target.closest("a")) closeDrawer();
+    if (event.target.closest("a")) closeDrawer({ restoreFocus: false });
   });
 }
 

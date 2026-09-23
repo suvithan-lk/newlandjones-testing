@@ -72,7 +72,7 @@ This gives utilities like `text-navy`, `bg-tint`, `border-line` and `font-displa
 |---|---|---|
 | Display (h1–h3, numerals, quotes, FAQ questions) | **Cormorant Garamond** 400/500, italic 400/500 | Tight leading (0.98–1.12), slight negative tracking |
 | Text and UI | **Manrope** 400/500/600/700 | Body 16–17.5px, line-height 1.7–1.85 |
-| Eyebrows, labels, buttons, nav | Manrope 600, UPPERCASE | 10.5–12px, letter-spacing 0.16–0.3em |
+| Eyebrows, labels, buttons, nav | Manrope 600, UPPERCASE | **12px minimum** (`--fs-label`), letter-spacing 0.16–0.3em (tighter on phones) |
 
 **Scale (fluid):**
 
@@ -102,6 +102,10 @@ The logo uses its own geometric sans (in the image). Don't recreate it with web 
 | `--topbar-h` | 44px | 0 (hidden) | — |
 
 Breakpoints follow Tailwind: `sm 640`, `md 768`, **`lg 1024`** (desktop nav appears), `xl 1280`. Between 1024 and 1279px the header grid switches to content-sized columns so the logo fits.
+
+**Touch:** every interactive element on touch screens is at least **44×44px** (`--tap`). Slim underline links get an invisible `::before` hit area, so they keep their look. Links inside a sentence are exempt (WCAG 2.5.8).
+
+**Mobile-first order:** below 1024px the hero shows the headline and primary CTA before the photo. Below 640px, content-block buttons stretch to full width and the hero caption sits under the photo.
 
 Corners are **square** (radius 0). The only circles are icon rings and the scroll/indicator marks.
 
